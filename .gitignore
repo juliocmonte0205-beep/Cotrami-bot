@@ -1,0 +1,29 @@
+# Dependências instaladas
+node_modules/
+
+# Autenticação do WhatsApp
+.wwebjs_auth/
+.wwebjs_cache/
+.wwebjs_auth_backup_*/
+
+# Banco de dados local
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Senhas e configurações privadas
+.env
+.env.*
+!.env.example
+
+# Arquivos de backup e versões antigas
+cotrami-bot-poo/
+cotrami-etapa1.zip
+
+# Código antigo que não faz parte da aplicação atual
+chatbot.js
+
+# Arquivos temporários
+*.log
+.DS_Store
