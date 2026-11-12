@@ -7,7 +7,7 @@ node_modules/
 .wwebjs_auth_backup_*/
 
 # Banco de dados local
-data/
+/data/
 *.db
 *.sqlite
 *.sqlite3
