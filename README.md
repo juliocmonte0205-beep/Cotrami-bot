@@ -97,7 +97,27 @@ Cotrami-bot/
 - Google Chrome compatível com a configuração do projeto.
 - Acesso ao WhatsApp para autenticação do bot.
 
-**Importante:** a configuração atual utiliza o caminho `/usr/bin/google-chrome-stable`, comum em determinadas instalações Linux. Outros ambientes podem exigir ajustes em `src/config/whatsappConfig.js`.
+**Importante:** por padrão, o bot procura o Chrome em `/usr/bin/google-chrome-stable`, comum em instalações Linux. Em outros sistemas, informe o caminho pela variável de ambiente `CHROME_PATH` antes de iniciar.
+
+Windows (Prompt de Comando):
+
+```bat
+set CHROME_PATH=C:\Program Files\Google\Chrome\Application\chrome.exe
+npm start
+```
+
+Windows (PowerShell):
+
+```powershell
+$env:CHROME_PATH = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+npm start
+```
+
+macOS:
+
+```bash
+CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm start
+```
 
 ### 1. Clonar o repositório
 

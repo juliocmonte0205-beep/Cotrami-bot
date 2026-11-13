@@ -4,7 +4,8 @@ function criarConfiguracaoWhatsApp() {
   return {
     authStrategy: new LocalAuth(),
     puppeteer: {
-      executablePath: '/usr/bin/google-chrome-stable',
+      // Defina CHROME_PATH para usar o Chrome em outro caminho (ex.: no Windows).
+      executablePath: process.env.CHROME_PATH || '/usr/bin/google-chrome-stable',
       headless: false,
       args: [
         '--no-sandbox',
