@@ -36,7 +36,30 @@
     <section id="telaPainel" class="hidden">
       <nav class="abas" id="abas" aria-label="Seções do painel"></nav>
 
-      <div class="card">
+      <!-- Visão geral -->
+      <div id="telaInicio" class="hidden">
+        <div class="resumo" id="resumo"></div>
+        <div class="inicio-grade">
+          <div class="card">
+            <div class="card-topo">
+              <h2 id="tituloHoje">Viagens de hoje</h2>
+              <button type="button" class="btn btn-claro btn-pequeno" data-ir="viagens">Abrir escala</button>
+            </div>
+            <div id="listaHoje"></div>
+          </div>
+          <div class="card">
+            <h2>Atenção</h2>
+            <ul class="alertas" id="alertas"></ul>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Próximos dias</h2>
+          <p class="ajuda">Quantidade de viagens cadastradas em cada um dos próximos 7 dias.</p>
+          <div class="semana" id="semana"></div>
+        </div>
+      </div>
+
+      <div class="card" id="cardForm">
         <div class="card-topo">
           <h2 id="tituloForm"></h2>
           <button type="button" class="btn btn-claro hidden" id="cancelarEdicao">Cancelar edição</button>
@@ -45,7 +68,7 @@
         <form id="formRegistro" class="grade"></form>
       </div>
 
-      <div class="card">
+      <div class="card" id="cardLista">
         <div class="card-topo">
           <h2 id="tituloLista"></h2>
           <div class="filtros" id="filtros"></div>
@@ -62,6 +85,17 @@
   </main>
 
   <div id="toast" class="toast hidden" role="status"></div>
+
+  <!-- Confirmação de exclusão -->
+  <dialog id="dialogoExcluir" class="dialogo" aria-labelledby="dialogoTitulo">
+    <h2 id="dialogoTitulo">Excluir registro?</h2>
+    <p id="dialogoTexto"></p>
+    <p class="ajuda">Essa ação não pode ser desfeita.</p>
+    <div class="dialogo-acoes">
+      <button type="button" class="btn btn-claro" id="dialogoCancelar">Cancelar</button>
+      <button type="button" class="btn btn-perigo" id="dialogoConfirmar">Excluir</button>
+    </div>
+  </dialog>
 
   <script src="app.js"></script>
 </body>

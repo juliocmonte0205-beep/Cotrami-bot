@@ -125,6 +125,51 @@ td.acoes { white-space: nowrap; display: flex; gap: 6px; }
   font-weight: 600;
 }
 
+/* Visão geral */
+.resumo { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+.numero { background: var(--card); border-radius: 14px; padding: 16px 18px; box-shadow: 0 3px 12px #15253c12; border: 0; text-align: left; font: inherit; color: var(--texto); cursor: pointer; }
+.numero:hover { outline: 2px solid var(--claro); }
+.numero .valor { display: block; font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.numero .rotulo { color: var(--suave); font-size: 13px; }
+.inicio-grade { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+.inicio-grade .card { margin: 0; min-width: 0; }
+.viagem-hoje { display: grid; grid-template-columns: 64px 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 14px; }
+.viagem-hoje:last-child { border-bottom: 0; }
+.viagem-hoje .hora { font-weight: 700; font-variant-numeric: tabular-nums; }
+.viagem-hoje.passou { color: var(--suave); }
+.viagem-hoje .proxima { background: #dff3ec; color: var(--ativo); }
+.alertas { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; font-size: 14px; }
+.alertas li { padding: 10px 12px; border-radius: 8px; background: var(--aviso); border-left: 4px solid var(--aviso-borda); }
+.alertas li.ok { background: #dff3ec; border-left-color: var(--ativo); }
+.semana { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.dia { border: 1px solid var(--linha); border-radius: 10px; padding: 10px; text-align: center; background: #fff; font: inherit; color: var(--texto); cursor: pointer; }
+.dia:hover { border-color: var(--primaria); }
+.dia .sem { display: block; font-size: 12px; color: var(--suave); text-transform: capitalize; }
+.dia .qtd { display: block; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dia.vazio-dia { background: var(--aviso); border-color: var(--aviso-borda); }
+.dia.hoje { border: 2px solid var(--ativo); }
+
+/* Escala agrupada por dia */
+tr.grupo td { background: var(--fundo); font-weight: 700; font-size: 13px; color: #19344e; padding: 8px 10px; }
+tr.grupo .etiqueta { margin-left: 8px; font-weight: 600; }
+
+/* Validação dos campos */
+label.invalido input, label.invalido select { border-color: var(--perigo); background: #fff7f7; }
+.erro-campo { color: var(--perigo); font-size: 12px; font-weight: 600; }
+.confirmar-passado { grid-column: 1 / -1; margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--aviso); border-left: 4px solid var(--aviso-borda); font-size: 14px; }
+
+/* Diálogo */
+.dialogo { border: 0; border-radius: 14px; padding: 22px; max-width: 420px; width: calc(100% - 32px); box-shadow: 0 12px 40px #15253c40; color: var(--texto); }
+.dialogo::backdrop { background: #15253c66; }
+.dialogo h2 { margin-bottom: 10px; }
+.dialogo p { margin: 0 0 8px; }
+.dialogo-acoes { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+
+@media (max-width: 820px) {
+  .inicio-grade { grid-template-columns: 1fr; }
+  .semana { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
 @media (max-width: 560px) {
   .topo h1 { font-size: 18px; }
   .card { padding: 16px; }
