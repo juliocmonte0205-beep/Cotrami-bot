@@ -11,6 +11,8 @@ Como podemos ajudar você hoje?
 3️⃣ Valores das passagens
 4️⃣ Consultar itinerários
 5️⃣ Outras informações
+6️⃣ Achados e perdidos
+7️⃣ Consultar protocolo
 
 Digite o número da opção desejada.
 
@@ -60,7 +62,7 @@ Digite *0* para voltar ao menu principal.`,
   obterMensagemInvalida() {
     return `❌ *Opção não reconhecida.*
 
-Digite um número de *1 a 5* para selecionar uma opção.
+Digite um número de *1 a 7* para selecionar uma opção.
 
 Ou digite *0* para voltar ao menu principal.`;
   }

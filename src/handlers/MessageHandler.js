@@ -21,6 +21,13 @@ class MessageHandler {
 
       // Mantém o envio direto que funcionou na versão anterior.
       await this.client.sendMessage(msg.from, resposta);
+      // Mensagens auxiliares (ex.: protocolo isolado) são enviadas depois da resposta.
+      // Compatível com serviços antigos que não implementam esse método.
+      const extras = typeof this.chatbotService.consumirMensagensExtras === 'function'
+        ? this.chatbotService.consumirMensagensExtras(msg.from) : [];
+      for (const extra of extras) {
+        await this.client.sendMessage(msg.from, extra);
+      }
       console.log('✅ Resposta enviada!');
     } catch (erro) {
       console.error('❌ Erro ao processar mensagem:', erro);

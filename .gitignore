@@ -27,3 +27,11 @@ chatbot.js
 # Arquivos temporários
 *.log
 .DS_Store
+
+# Arquivos locais e backups
+/testes-locais/
+/backup-importacao/
+/backup-*/
+/etapa6/
+/cotrami-etapa7-experiencia/
+.backup-etapa*/
