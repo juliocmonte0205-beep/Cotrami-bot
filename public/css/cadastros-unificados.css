@@ -1,0 +1,15 @@
+/* Melhorias extraídas do trabalho do Gabriel, adaptadas à interface do Cotrami Conecta */
+.unif-ferramentas{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin-bottom:18px;padding-bottom:15px;border-bottom:1px solid #e4ebf2}
+.unif-ferramentas label{font-size:12px;color:#52677d;font-weight:700;display:grid;gap:6px}
+.unif-ferramentas .unif-busca{flex:1 1 220px}
+.unif-ferramentas .unif-data{flex:0 1 200px}
+.unif-ferramentas input{width:100%;min-width:0}
+.unif-ferramentas button{min-height:43px}
+.unif-ferramentas #unifQuantidade{margin-left:auto;font-size:12px;padding-bottom:9px}
+.unif-acoes{display:flex;gap:7px;white-space:nowrap}
+.unif-acoes button{padding:7px 10px;font-size:12px}
+.unif-grupo td{background:#edf4fa;color:#24445d;font-size:13px;font-weight:750;padding:10px 12px}
+.unif-editando td{background:#e8f5f0}
+.unif-vazio{text-align:center;color:#708296;padding:25px!important}
+#unifCancelar{min-height:43px}
+@media(max-width:620px){.unif-ferramentas .unif-data,.unif-ferramentas .unif-busca{flex:1 1 100%}.unif-ferramentas #unifQuantidade{margin-left:0;width:100%}.unif-acoes{flex-direction:column}}
