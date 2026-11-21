@@ -1,0 +1,12 @@
+#rotas .rotas-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,.9fr);gap:18px}
+#rotas #mapaRotas{width:100%;height:480px;border-radius:14px;border:1px solid #dbe4ed;background:#e3edf5;z-index:0}
+#rotas .rotas-actions{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+#rotas .rotas-actions button{padding:9px 12px}
+#rotas .rota-stop{border:1px solid #e0e8f0;padding:10px 12px;border-radius:11px;margin:7px 0;display:flex;gap:8px;align-items:center;justify-content:space-between}
+#rotas .rota-stop button{padding:6px 9px}
+#rotas .rota-stop strong{font-size:13px}
+#rotas .rota-stop small{display:block;color:#64748b}
+#rotas .rota-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#rotas .rota-hint{background:#fef8e7;color:#795414;padding:12px;border-radius:10px;font-size:13px;line-height:1.5}
+#rotas .rota-tag{display:inline-block;padding:4px 10px;border-radius:20px;background:#eaf3ff;color:#165885;font-size:12px;font-weight:700}
+@media(max-width:900px){#rotas .rotas-layout{grid-template-columns:1fr}#rotas #mapaRotas{height:360px}}

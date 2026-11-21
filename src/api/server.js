@@ -244,6 +244,9 @@ app.get('/api/publico/viagens', (req, res) => {
   res.json(viagens);
 });
 app.get('/api/publico/linhas', (req, res) => res.json(db.listar('linhas').map(({nome,origem,destino})=>({nome,origem,destino}))));
+// COTRAMI ETAPA 9A ROTAS
+const criarRotasRouter = require('../routes/rotasRouter');
+app.use('/api/rotas', autenticar, admin, criarRotasRouter());
 function iniciarApi() {
   const porta = Number(process.env.PORT || 3000);
   const host = process.env.HOST || '127.0.0.1';
