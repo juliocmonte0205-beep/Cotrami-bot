@@ -14,12 +14,13 @@ function dataBRparaISO(entrada) {
 
 class ChatbotService {
   // 4º argumento opcional: permite testes sem tocar no armazenamento real.
-  constructor(menuService, sessionManager, db, escalas = new EscalasImportadas(), achados = new AchadosPerdidos()) {
+  constructor(menuService, sessionManager, db, escalas = new EscalasImportadas(), achados = new AchadosPerdidos(), iaService = null) {
     this.menuService = menuService;
     this.sessionManager = sessionManager;
     this.db = db;
     this.escalas = escalas;
     this.achados = achados;
+    this.iaService = iaService;
     this.ocorrencias = new Map();
     this.protocolosEmConsulta = new Map();
     this.paginasProtocolos = new Map();
@@ -125,6 +126,50 @@ class ChatbotService {
       return this.menuService.obterMenuPrincipal();
     }
     return this.menuService.obterMensagemInvalida();
+  }
+
+  // Camada opcional: a IA apenas classifica intenção; não cria horários, carros ou protocolos.
+  // Mantém processarMensagem síncrono para compatibilidade com testes e fluxos antigos.
+  async processarMensagemComIA(usuario, texto) {
+    const mensagem = String(texto || '').trim();
+    const normalizada = mensagem.toLowerCase();
+    const estado = this.sessionManager.obter(usuario);
+
+    // Nunca interceptar respostas de formulários, datas, horários nem comandos do menu.
+    if (!this.iaService || !this.iaService.ativo ||
+        (estado && (estado.startsWith('achados_') || estado.startsWith('aguardando_'))) ||
+        this.saudacoes.has(normalizada) || /^(?:[0-7]|mais|anterior|data)$/.test(normalizada) ||
+        /^AP-[A-F0-9]{12}$/i.test(mensagem)) {
+      return this.processarMensagem(usuario, texto);
+    }
+
+    let intencao = 'outro';
+    try {
+      intencao = await this.iaService.classificar(mensagem);
+    } catch (erro) {
+      console.warn('⚠️ Ollama indisponível; mantendo atendimento por menu:', erro.message);
+    }
+
+    switch (intencao) {
+      case 'achados_perdido':
+      case 'achados_encontrado': {
+        // Não pressupõe dados omitidos e não registra ocorrência sem confirmação.
+        const tipo = intencao === 'achados_perdido' ? 'perdido' : 'encontrado';
+        this.ocorrencias.set(usuario, { tipo });
+        this.sessionManager.definir(usuario, 'achados_descricao');
+        return `🧳 Entendi que você ${tipo === 'perdido' ? 'perdeu' : 'encontrou'} um objeto. Vou ajudar com o registro.\n\n📝 Descreva o objeto com detalhes (por exemplo, cor e características).\n\nDigite *0* para cancelar.`;
+      }
+      case 'consultar_protocolo':
+        return this.iniciarConsultaAchados(usuario);
+      case 'consultar_horarios':
+        return this.iniciarConsulta(usuario);
+      case 'consultar_linhas':
+        return this.processarMensagem(usuario, '1');
+      case 'menu':
+        return this.processarMensagem(usuario, '0');
+      default:
+        return this.processarMensagem(usuario, texto);
+    }
   }
 
   // Permite que o WhatsApp envie o código em uma mensagem própria.

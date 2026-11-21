@@ -6,7 +6,7 @@ class MessageHandler {
 
   async processar(msg) {
     try {
-      console.log('📩 Mensagem recebida:', msg.from, msg.body);
+      console.log('📩 Mensagem recebida para atendimento.');
 
       if (!msg.from || msg.fromMe || msg.from.endsWith('@g.us')) {
         return;
@@ -16,7 +16,9 @@ class MessageHandler {
         return;
       }
 
-      const resposta = this.chatbotService.processarMensagem(msg.from, msg.body);
+      const resposta = typeof this.chatbotService.processarMensagemComIA === 'function'
+        ? await this.chatbotService.processarMensagemComIA(msg.from, msg.body)
+        : await this.chatbotService.processarMensagem(msg.from, msg.body);
       console.log('🤖 Tentando enviar resposta...');
 
       // Mantém o envio direto que funcionou na versão anterior.
